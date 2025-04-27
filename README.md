@@ -1,0 +1,3 @@
+- [x] LpBound: Pessimistic Cardinality Estimation using ℓp-Norms of Degree Sequences
+- [ ] Improving Unnesting of Complex Queries
+- [ ] Beyond Quacking: Deep Integration of Language Models and RAG into DuckDB
