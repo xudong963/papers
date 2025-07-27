@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package dag_proto;
+
+service Worker {
+  rpc RunTask (TaskRequest) returns (TaskResult);
+}
+
+message TaskRequest {
+  string task_id = 1;
+  string code = 2;
+  repeated bytes input_batches = 3; // Data from the previous task, serialized in Arrow IPC format
+}
+
+message TaskResult {
+  string task_id = 1;
+  string log = 2;
+  bytes output_batch = 3;
+}
