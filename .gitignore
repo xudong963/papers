@@ -1,0 +1,3 @@
+.idea
+# Any target in any subdirectory should be ignored
+target/
