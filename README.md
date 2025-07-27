@@ -4,3 +4,4 @@
 - [ ] Unity Catalog: Open and Universal Governance for the Lakehouse and Beyond
 - [ ] Pruning in Snowflake: Working Smarter, Not Harder
 - [ ] Including Bloom Filters in Bottom-up Optimization
+- [ ] Bauplan: zero-copy, scale-up FaaS for data pipelines
