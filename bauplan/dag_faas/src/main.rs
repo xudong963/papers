@@ -4,13 +4,13 @@ mod arrow_util;
 mod dag;
 mod worker;
 mod dag_proto;
-mod cp;
+mod dp;
 
 #[tokio::main]
 async fn main() {
     let args: Vec<String> = env::args().collect();
     if args.len() < 2 {
-        println!("Usage: {} [cp|worker <addr>]", args[0]);
+        println!("Usage: {} [dp|worker <addr>]", args[0]);
         return;
     }
     match args[1].as_str() {
@@ -19,9 +19,9 @@ async fn main() {
             println!("Starting worker at {}", addr);
             worker::serve_worker(addr).await;
         }
-        "cp" => {
+        "dp" => {
             let workers = vec!["http://127.0.0.1:50051", "http://127.0.0.1:50052"];
-            cp::run_cp(workers).await;
+            dp::run_dp(workers).await;
         }
         _ => {
             println!("Unknown command");

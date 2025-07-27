@@ -6,8 +6,8 @@ use crate::dag::build_sample_dag;
 use crate::arrow_util::*;
 use std::collections::HashMap;
 
-// Control Plane (CP) - orchestrates the execution of tasks across multiple workers
-pub async fn run_cp(worker_addrs: Vec<&str>) {
+// Data Plane (DP) - orchestrates the execution of tasks across multiple workers
+pub async fn run_dp(worker_addrs: Vec<&str>) {
     let (dag, _) = build_sample_dag();
     let topo = toposort(&dag, None).expect("DAG must be acyclic");
     let mut node_results: HashMap<NodeIndex, Vec<u8>> = HashMap::new();
@@ -21,7 +21,7 @@ pub async fn run_cp(worker_addrs: Vec<&str>) {
             .map(|parent| node_results.get(&parent).cloned().unwrap_or_default())
             .collect();
 
-        println!("CP: dispatching node {} to worker {}", node.id, worker_addr);
+        println!("DP: dispatching node {} to worker {}", node.id, worker_addr);
 
         let mut client = WorkerClient::connect(worker_addr.to_string()).await.unwrap();
         let req = tonic::Request::new(TaskRequest {
@@ -30,7 +30,7 @@ pub async fn run_cp(worker_addrs: Vec<&str>) {
             input_batches: parent_outputs,
         });
         let resp = client.run_task(req).await.unwrap().into_inner();
-        println!("CP: got result for node {}: {}", node.id, resp.log);
+        println!("DP: got result for node {}: {}", node.id, resp.log);
 
         node_results.insert(*node_idx, resp.output_batch);
     }
