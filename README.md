@@ -1,5 +1,5 @@
 - [x] LpBound: Pessimistic Cardinality Estimation using ℓp-Norms of Degree Sequences
-- [ ] Improving Unnesting of Complex Queries
+- [x] Improving Unnesting of Complex Queries
 - [ ] Beyond Quacking: Deep Integration of Language Models and RAG into DuckDB
 - [ ] Unity Catalog: Open and Universal Governance for the Lakehouse and Beyond
 - [ ] Pruning in Snowflake: Working Smarter, Not Harder
